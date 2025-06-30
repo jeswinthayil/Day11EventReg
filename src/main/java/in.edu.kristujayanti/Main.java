@@ -8,7 +8,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.handler.BodyHandler; // ✅ Add this import
+import io.vertx.ext.web.handler.BodyHandler;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,10 +22,10 @@ public class Main {
 
         Router router = Router.router(vertx);
 
-        // ✅ Enable JSON body parsing for all routes
+
         router.route().handler(BodyHandler.create());
 
-        // 🧩 Register all route handlers
+
         RegisterHandler.registerRoutes(router, mongoClient);
         AuthHandler.authRoutes(router, mongoClient);
         EventHandler.eventRoutes(router, mongoClient);
@@ -34,7 +34,7 @@ public class Main {
                 .requestHandler(router)
                 .listen(8888, http -> {
                     if (http.succeeded()) {
-                        System.out.println("✅ Server running at http://localhost:8888");
+                        System.out.println("Server running at http://localhost:8888");
                     } else {
                         http.cause().printStackTrace();
                     }

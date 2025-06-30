@@ -31,7 +31,7 @@ public class EmailUtil {
     }
 
     public static void sendPasswordEmail(String to, String password) {
-        send(to, "🎟️ Your Event App Password", "Hello! Your password is: " + password);
+        send(to, "Your Event App Password", "Hello! Your password is: " + password);
     }
 
     public static void sendTokenEmail(String to, String token) {
@@ -55,15 +55,15 @@ public class EmailUtil {
             MailMessage message = new MailMessage()
                     .setFrom("jeswintom123@gmail.com")
                     .setTo(to)
-                    .setSubject("✅ Your Event Booking Token")
+                    .setSubject("Your Event Booking Token")
                     .setText("Thanks for booking!\nYour token: " + token + "\nAttached is your QR code.")
                     .setAttachment(Collections.singletonList(attachment));
 
             mailClient.sendMail(message, (AsyncResult<MailResult> result) -> {
                 if (result.succeeded()) {
-                    System.out.println("✅ Email sent to " + to);
+                    System.out.println("Email sent to " + to);
                 } else {
-                    System.out.println("❌ Failed to send email:");
+                    System.out.println("Failed to send email:");
                     result.cause().printStackTrace();
                 }
             });
@@ -82,9 +82,9 @@ public class EmailUtil {
 
         mailClient.sendMail(message, result -> {
             if (result.succeeded()) {
-                System.out.println("✅ Email sent to " + to);
+                System.out.println("Email sent to " + to);
             } else {
-                System.out.println("❌ Failed to send email:");
+                System.out.println("Failed to send email:");
                 result.cause().printStackTrace();
             }
         });
